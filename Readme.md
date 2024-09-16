@@ -2,6 +2,7 @@
 
 ## Motivação
 <p>O motivo desse projeto é <del>(que eu estava desocupado e resolvi fazer)</del> que você hospede o seu próprio encurtador de url's sem depender de um terceiro vigiando os sites que você acessa.</p>
+Não é armazenado log's e nem ip's.<br>
 
 ## Pré requisitos
 <ul>
