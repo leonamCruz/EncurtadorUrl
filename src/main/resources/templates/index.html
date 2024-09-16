@@ -4,20 +4,28 @@
     <meta charset="UTF-8">
     <script src="../static/js/bootstrap.min.js"></script>
     <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="../static/img/url.png">
     <title>Encurtador de Url</title>
 </head>
 <body class="bg-dark">
 <div class="container d-flex justify-content-center flex-column vh-100">
-    <h1 class="text-center text-light">Encurtador de URL</h1>
+    <div class="d-flex align-items-center justify-content-center">
+        <h1 class="text-center text-light mx-2">
+            Encurtador de URL
+        </h1>
+        <div><img src="../static/img/url.png" width="60"></div>
+    </div>
     <form>
         <div class="form-group">
             <label for="entrada">Cole sua URL aqui:</label>
-            <input type="url" class="form-control" id="entrada" placeholder="https://exemplo.com" required>
+            <input type="url" class="form-control form-control-lg" id="entrada" placeholder="https://exemplo.com" required>
         </div>
-        <button type="button" class="btn btn-primary btn-lg" onclick="salvar()" data-bs-toggle="modal" data-bs-target="#modal">
-            Encurtar Url
-        </button>
-
+        <div class="d-flex justify-content-center mt-2">
+            <button type="button" class="btn btn-primary btn-lg" onclick="salvar()" data-bs-toggle="modal"
+                    data-bs-target="#modal">
+                Encurtar Url
+            </button>
+        </div>
         <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalurl" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -30,7 +38,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                        <button id="copiarurl" onclick="copiar()" type="button" class="btn btn-primary">Copiar URL</button>
+                        <button id="copiarurl" onclick="copiar()" type="button" class="btn btn-primary">Copiar URL
+                        </button>
                     </div>
                 </div>
             </div>
@@ -38,14 +47,13 @@
         <script>
             function salvar() {
                 const urlObtida = document.getElementById('entrada').value
-                const data = { url: urlObtida }
+                const data = {url: urlObtida}
                 const dominioAtual = window.location.origin
-                const mapping = '/api/gerar'
-                const api = `${dominioAtual}/${mapping}`
+                const api = `${dominioAtual}/api/gerar`
 
                 fetch(api, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify(data)
                 })
                     .then(response => response.json())
