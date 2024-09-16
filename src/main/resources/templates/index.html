@@ -11,15 +11,64 @@
     <h1 class="text-center text-light">Encurtador de URL</h1>
     <form>
         <div class="form-group">
-            <label for="url-input">Cole sua URL aqui:</label>
-            <input type="url" class="form-control" id="url-input" placeholder="https://exemplo.com" required>
+            <label for="entrada">Cole sua URL aqui:</label>
+            <input type="url" class="form-control" id="entrada" placeholder="https://exemplo.com" required>
         </div>
-        <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary btn-block mt-2">Encurtar URL</button>
-        </div>
+        <button type="button" class="btn btn-primary btn-lg" onclick="salvar()" data-bs-toggle="modal" data-bs-target="#modal">
+            Encurtar Url
+        </button>
 
+        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalurl" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalurl">Sua Url encurtada é:</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div id="ondevaiaurl" class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button id="copiarurl" onclick="copiar()" type="button" class="btn btn-primary">Copiar URL</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function salvar() {
+                const urlObtida = document.getElementById('entrada').value
+                const data = { url: urlObtida }
+                const api = 'http://localhost:8080/api/gerar'
+
+                fetch(api, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('ondevaiaurl').innerText = data
+                    })
+                    .catch(error => {
+                        alert(error)
+                        console.log(error)
+                    })
+            }
+
+            function copiar() {
+                const urlEncurtada = document.getElementById('ondevaiaurl').innerText
+                navigator.clipboard.writeText(urlEncurtada)
+                    .then(() => {
+                        alert('URL copiada para a área de transferência!')
+                    })
+                    .catch(err => {
+                        alert('Erro ao copiar a URL')
+                        console.log(err)
+                    })
+            }
+        </script>
     </form>
 </div>
-
 </body>
 </html>

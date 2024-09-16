@@ -1,13 +1,10 @@
 package tech.leonam.encurtadorurl.model;
 
 import jakarta.persistence.*;
-import jdk.jfr.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.LocalDateTime;
 
 @Entity
 @AllArgsConstructor
