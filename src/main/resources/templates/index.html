@@ -39,7 +39,9 @@
             function salvar() {
                 const urlObtida = document.getElementById('entrada').value
                 const data = { url: urlObtida }
-                const api = 'http://localhost:8080/api/gerar'
+                const dominioAtual = window.location.origin
+                const mapping = '/api/gerar'
+                const api = `${dominioAtual}/${mapping}`
 
                 fetch(api, {
                     method: 'POST',
@@ -48,7 +50,7 @@
                 })
                     .then(response => response.json())
                     .then(data => {
-                        document.getElementById('ondevaiaurl').innerText = data
+                        document.getElementById('ondevaiaurl').innerText = `${dominioAtual}/${data.urlEncurtada}`
                     })
                     .catch(error => {
                         alert(error)
