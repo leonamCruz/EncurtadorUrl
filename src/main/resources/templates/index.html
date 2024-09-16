@@ -49,7 +49,7 @@
                 const urlObtida = document.getElementById('entrada').value
                 const data = {url: urlObtida}
                 const dominioAtual = window.location.origin
-                const api = `${dominioAtual}/api/gerar`
+                const api = `${dominioAtual}/gerar`
 
                 fetch(api, {
                     method: 'POST',
