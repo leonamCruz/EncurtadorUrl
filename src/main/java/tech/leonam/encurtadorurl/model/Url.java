@@ -1,8 +1,7 @@
 package tech.leonam.encurtadorurl.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jdk.jfr.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,11 +17,12 @@ import java.time.LocalDateTime;
 public class Url {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(nullable = false, unique = true)
     private String urlOriginal;
     @Column(nullable = false, unique = true)
     private String urlEncurtada;
-    private LocalDateTime dataDeCriacao;
+    private String dataDeCriacao;
 
 }

@@ -9,4 +9,6 @@ public interface UrlRepository extends JpaRepository<Url, Long> {
 
     Url findByUrlOriginal(String urlOriginal);
     Url findByUrlEncurtada(String urlEncurtada);
+    Boolean existsByUrlEncurtada(String urlEncurtada);
+    Boolean existsByUrlOriginal(String urlOriginal);
 }
