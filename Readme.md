@@ -22,7 +22,7 @@ A máquina onde eu hospedo o Conteiner Docker é um i3320 com 12gb de ram. Entã
 ## Rodando com Docker
 <li>Clone o repositório</li>
 
-` git clone https://github.com/leonamCruz/encurtador `
+` git clone https://github.com/leonamCruz/EncurtadorUrl `
 <br>
 <li>Entre na pasta de arquivos</li>
 
@@ -54,7 +54,7 @@ DB_PASS=<sua senha do MariaDB>
 Você pode alterar a porta do Host para qual desejar.
 
 ## Forma Chata de rodar o Projeto
-` git clone https://github.com/leonamCruz/encurtador `
+` git clone https://github.com/leonamCruz/EncurtadorUrl `
 <br>
 <li>Entre na pasta de arquivos</li>
 
