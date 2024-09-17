@@ -38,7 +38,6 @@ public class UrlService {
 
     public String geraAleatorio() {
         SecureRandom random = new SecureRandom();
-
         char[] caracteres = new char[10];
 
         for (var i = 0; i < caracteres.length; i++) {
