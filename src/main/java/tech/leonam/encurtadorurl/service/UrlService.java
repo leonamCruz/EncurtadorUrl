@@ -36,10 +36,6 @@ public class UrlService {
         return urlRepository.findByUrlOriginal(urlOriginal);
     }
 
-    public Url buscaPorUrlModificada(String urlModificada) {
-        return urlRepository.findByUrlEncurtada(urlModificada);
-    }
-
     public String geraAleatorio() {
         SecureRandom random = new SecureRandom();
 
