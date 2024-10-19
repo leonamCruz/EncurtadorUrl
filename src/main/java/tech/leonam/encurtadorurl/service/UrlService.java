@@ -61,6 +61,13 @@ public class UrlService {
     }
 
     public String buscaPorStringOriginal(String urlModificada) {
-        return urlRepository.findUrlOriginalByUrlEncurtada(urlModificada);
+        var url = urlRepository.findByUrlEncurtada(urlModificada);
+        if (url == null) return "";
+
+        url.setQuantasVezesEntraram(url.getQuantasVezesEntraram() + 1);
+        urlRepository.save(url);
+
+        return url.getUrlOriginal();
     }
+
 }

@@ -1,10 +1,6 @@
 package tech.leonam.encurtadorurl.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,5 +21,11 @@ public class Url {
     @Column(nullable = false, unique = true)
     private String urlEncurtada;
     private String dataDeCriacao;
+    private Long quantasVezesEntraram;
+
+    @PrePersist
+    public void init(){
+        quantasVezesEntraram = 0L;
+    }
 
 }

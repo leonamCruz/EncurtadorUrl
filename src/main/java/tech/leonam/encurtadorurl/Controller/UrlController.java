@@ -25,6 +25,7 @@ public class UrlController {
     @GetMapping("/{urlModificada}")
     public ResponseEntity<Void> redirect(@PathVariable("urlModificada") String urlModificada) {
         var url = urlService.buscaPorStringOriginal(urlModificada);
+
         if (url == null || url.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
