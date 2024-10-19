@@ -71,6 +71,6 @@ Você pode alterar a porta do Host para qual desejar.
 <br> O & é necessário para rodar em segundo plano caso esteja no linux, basta digitar bg assim que iniciar a rodar, senão finja que ele não existe e remova do comando.
 
 #Bug's Conhecidos
-<li>Botão de copiar a URL funciona somente 1 vez</li>
+<li>Botão de copiar a URL funciona somente 1 vez no Chrome - Não Afeta Firefox</li>
 Na próxima att, consertarei. <br>
 Descrição do Bug: A primeira vez o botão de copiar funciona majestosamente bem, e ao fechar e gerar uma nova URL encurtada, por algum motivo mirabolante não copia a URL nova modificada.
