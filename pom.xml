@@ -10,7 +10,7 @@
     </parent>
     <groupId>tech.leonam</groupId>
     <artifactId>EncurtadorUrl</artifactId>
-    <version>1</version>
+    <version>1.0.1</version>
     <name>EncurtadorUrl</name>
     <description>EncurtadorUrl</description>
     <url/>
