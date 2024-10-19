@@ -1,4 +1,4 @@
-package tech.leonam.encurtadorurl.Controller;
+package tech.leonam.encurtadorurl.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
