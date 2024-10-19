@@ -78,11 +78,26 @@ class UrlServiceTest {
     }
 
     @Test
-    void testBuscaPorStringOriginal() {
-        when(urlRepository.findUrlOriginalByUrlEncurtada(urlEncurtada)).thenReturn(urlEntrada.getUrl());
+    void testBuscaPorStringOriginal_ComUrlEncontrada() {
+        // Inicializa o contador
+        url.setQuantasVezesEntraram(0L);
 
-        String resultado = urlService.buscaPorStringOriginal(urlEncurtada);
+        when(urlRepository.findByUrlEncurtada(urlEncurtada)).thenReturn(url);
 
-        assertEquals(urlEntrada.getUrl(), resultado);
+        String result = urlService.buscaPorStringOriginal(urlEncurtada);
+
+        assertEquals(urlEntrada.getUrl(), result);
+        assertEquals(1L, url.getQuantasVezesEntraram());
+        verify(urlRepository).save(url);
+    }
+
+    @Test
+    void testBuscaPorStringOriginal_ComUrlNaoEncontrada() {
+        when(urlRepository.findByUrlEncurtada("nonExistentUrl")).thenReturn(null);
+
+        String result = urlService.buscaPorStringOriginal("nonExistentUrl");
+
+        assertEquals("", result);
+        verify(urlRepository, never()).save(any());
     }
 }
