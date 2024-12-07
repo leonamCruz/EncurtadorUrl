@@ -50,7 +50,7 @@ DB_PASS=<sua senha do MariaDB>
 
 <li>Finalmente copie esse comando para rodar:</li>
 
-`docker run -d -p 666:666 --env-file arq.env --name encurtador (numero do conteiner) `
+`docker run -d -p 666:666 --env-file arq.env encurtador:latest`
 <br>
 Você pode alterar a porta do Host para qual desejar.
 
