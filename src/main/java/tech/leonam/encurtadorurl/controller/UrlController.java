@@ -5,6 +5,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tech.leonam.encurtadorurl.model.ErroDTO;
 import tech.leonam.encurtadorurl.model.Url;
 import tech.leonam.encurtadorurl.model.UrlEntrada;
 import tech.leonam.encurtadorurl.service.UrlService;
@@ -18,8 +19,12 @@ public class UrlController {
 
     @PostMapping("/gerar")
     public ResponseEntity<Url> gerar(@RequestBody UrlEntrada urlEntrada) {
-        var urlGerada = urlService.salvar(urlEntrada);
-        return ResponseEntity.ok(urlGerada);
+        try {
+            var urlGerada = urlService.salvar(urlEntrada);
+            return ResponseEntity.ok(urlGerada);
+        }catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @GetMapping("/{urlModificada}")

@@ -1,6 +1,7 @@
 package tech.leonam.encurtadorurl.service;
 
 import lombok.AllArgsConstructor;
+import org.apache.commons.validator.routines.UrlValidator;
 import org.springframework.stereotype.Service;
 import tech.leonam.encurtadorurl.model.Url;
 import tech.leonam.encurtadorurl.model.UrlEntrada;
@@ -16,7 +17,12 @@ public class UrlService {
 
     private final UrlRepository urlRepository;
 
-    public Url salvar(UrlEntrada urlEntrada) {
+    public Url salvar(UrlEntrada urlEntrada) throws Exception {
+        UrlValidator urlValidator = new UrlValidator();
+        boolean urlValida = urlValidator.isValid(urlEntrada.getUrl());
+
+        if (!urlValida) throw new Exception("A Url não é válida");
+
         var url = new Url();
         if (urlRepository.existsByUrlOriginal(urlEntrada.getUrl())) {
             return buscarPorUrlOriginal(urlEntrada.getUrl());
