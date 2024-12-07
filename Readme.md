@@ -30,7 +30,7 @@ A máquina onde eu hospedo o Conteiner Docker é um i3320 com 12gb de ram. Entã
 ` cd encurtador `
 <li> Com o Docker já instalado rode o seguinte comando: </li>
 
-` docker build -t encurtador:lastest . 
+` docker build -t encurtador:latest . 
 ` <br>
 Na máquina de testes onde compilei o projeto, levou por volta de 2 minutos para compilar, tenha paciência.
 
