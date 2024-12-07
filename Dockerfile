@@ -6,6 +6,6 @@ RUN mvn clean package -DskipTests
 
 FROM openjdk:21
 WORKDIR /encurtador
-COPY --from=build /encurtador/target/EncurtadorUrl-1.jar app.jar
+COPY --from=build /encurtador/target/EncurtadorUrl-1.0.1.jar app.jar
 EXPOSE 666
 ENTRYPOINT ["java", "-jar", "app.jar"]
