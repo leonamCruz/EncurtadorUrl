@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <script src="../static/js/bootstrap.js"></script>
     <link href="../static/css/bootstrap.css" rel="stylesheet">
+    <link href="../static/css/estilo.css" rel="stylesheet">
     <link rel="icon" href="../static/img/url.png">
     <script src="../static/js/scripts.js"></script>
+    <script src="../static/js/qrcode.min.js"></script>
+
     <title>Encurtador de Url</title>
 </head>
 <body class="bg-dark">
@@ -19,7 +22,8 @@
     <form>
         <div class="form-group">
             <label for="entrada">Cole sua URL aqui:</label>
-            <input type="url" class="form-control form-control-lg" id="entrada" placeholder="https://exemplo.com" required>
+            <input type="url" class="form-control form-control-lg" id="entrada" placeholder="https://exemplo.com"
+                   required>
         </div>
         <div class="d-flex justify-content-center mt-2">
             <button type="button" class="btn btn-primary btn-lg" onclick="salvar()">
@@ -30,11 +34,16 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="modalurl">Sua Url encurtada é:</h1>
+                        <h1 class="modal-title fs-5" id="modalurl">A sua Url encurtada é:</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div id="ondevaiaurl" class="modal-body">
-                        ...
+                    <div class="d-flex justify-content-center align-content-center">
+                        <div id="ondevaiaurl" class="modal-body">
+                                <p id="urlEncurtada"></p>
+                            <div id="divisaoqr">
+                                <canvas id="qrcode"></canvas>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -45,6 +54,7 @@
             </div>
         </div>
     </form>
+
 </div>
 </body>
 </html>

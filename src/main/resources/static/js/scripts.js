@@ -17,7 +17,14 @@ function salvar() {
     })
         .then(response => response.json())
         .then(data => {
-            document.getElementById('ondevaiaurl').innerText = `${dominioAtual}/${data.urlEncurtada}`
+            const urlEncurtada = `${dominioAtual}/${data.urlEncurtada}`
+            document.getElementById('urlEncurtada').innerText = urlEncurtada
+            const qrcodeElement = document.getElementById('qrcode')
+            QRCode.toCanvas(qrcodeElement, urlEncurtada, function (error) {
+                if (error) {
+                    console.error(error)
+                }
+            })
             const modal = new bootstrap.Modal(document.getElementById('modal'))
             modal.show()
         })
