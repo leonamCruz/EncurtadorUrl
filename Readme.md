@@ -4,6 +4,8 @@
 <p>O motivo desse projeto é <del>(que eu estava desocupado e resolvi fazer)</del> que você hospede o seu próprio encurtador de url's sem depender de um terceiro vigiando os sites que você acessa.</p>
 Não é armazenado log's e nem ip's. Apenas conta quantas vezes o site foi acessado, isso de forma anônima.<br>
 
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg_-q9pVNKtBOSzHCxYmd5PEhC35kSRnSBiBWG-73VXUc7MXJfeAKdDLO9aegUBpF6Tc7emA3NyNYXoQux9Ymqv_noquZrQAbKWEx2Bat8i800-v3jRlgMeXgo8j4mHs8Deih1F2LS2sW3JJ0oAB5CLFu2hSL3yDd2DZLR5bbpFh5e6zBmD_u5MESDLNmJ4/s400-rw/encurtador.png">
+
 ## Pré requisitos
 <ul>
 <li>Possuir o Git Instalado</li>
@@ -70,7 +72,6 @@ Você pode alterar a porta do Host para qual desejar.
 ` java -jar EncurtadorUrl-1.jar &` 
 <br> O & é necessário para rodar em segundo plano caso esteja no linux, basta digitar bg assim que iniciar a rodar, senão finja que ele não existe e remova do comando.
 
-#Bug's Conhecidos
-<li>Botão de copiar a URL funciona somente 1 vez no Chrome - Não Afeta Firefox</li>
-Na próxima att, consertarei. <br>
-Descrição do Bug: A primeira vez o botão de copiar funciona majestosamente bem, e ao fechar e gerar uma nova URL encurtada, por algum motivo mirabolante não copia a URL nova modificada.
+# Bug's Conhecidos
+<li> O botão copiar não funciona</li>
+Solução: Ativar o Http's através de um Proxy reverso. Caso isso não solucione, é o seu navegador que bloqueia essa função por segurança.
