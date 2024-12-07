@@ -32,7 +32,7 @@ class UrlServiceTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
 
-        urlEntrada = new UrlEntrada("http://example.com");
+        urlEntrada = new UrlEntrada("https://www.site.com.br");
         urlEncurtada = "abcd1234";
 
         url = new Url();
@@ -42,7 +42,7 @@ class UrlServiceTest {
     }
 
     @Test
-    void testSalvarUrlNaoExistente() {
+    void testSalvarUrlNaoExistente() throws Exception {
         when(urlRepository.existsByUrlOriginal(urlEntrada.getUrl())).thenReturn(false);
         when(urlRepository.existsByUrlEncurtada(any())).thenReturn(false);
         when(urlRepository.save(any())).thenReturn(url);
@@ -57,7 +57,7 @@ class UrlServiceTest {
     }
 
     @Test
-    void testSalvarUrlExistente() {
+    void testSalvarUrlExistente() throws Exception {
         when(urlRepository.existsByUrlOriginal(urlEntrada.getUrl())).thenReturn(true);
         when(urlRepository.findByUrlOriginal(urlEntrada.getUrl())).thenReturn(url);
 
@@ -100,4 +100,19 @@ class UrlServiceTest {
         assertEquals("", result);
         verify(urlRepository, never()).save(any());
     }
+
+    @Test
+    void testFalharSeAUrlNaoForValida() throws Exception {
+
+        var entrada = new UrlEntrada("nao sou url");
+
+        when(urlRepository.existsByUrlOriginal(entrada.getUrl())).thenReturn(false);
+        when(urlRepository.findByUrlOriginal(entrada.getUrl())).thenReturn(url);
+
+        Exception exception = assertThrows(Exception.class, () -> urlService.salvar(entrada));
+
+        assertEquals("A Url não é válida", exception.getMessage());
+    }
+
+
 }
