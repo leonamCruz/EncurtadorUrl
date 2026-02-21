@@ -1,11 +1,17 @@
-FROM maven:3.9.9 AS build
-WORKDIR /encurtador
+FROM maven:3.9.9-eclipse-temurin-21-alpine AS build
+WORKDIR /app
+
 COPY pom.xml .
+RUN mvn dependency:go-offline
+
 COPY src ./src
 RUN mvn clean package -DskipTests
 
-FROM openjdk:21
-WORKDIR /encurtador
-COPY --from=build /encurtador/target/EncurtadorUrl-2.jar app.jar
-EXPOSE 666
-ENTRYPOINT ["java", "-jar", "app.jar"]
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+
+COPY --from=build /app/target/*.jar app.jar
+USER nobody
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-XX:MaxRAMPercentage=90.0", "-jar", "app.jar"]

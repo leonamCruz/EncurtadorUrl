@@ -1,47 +1,61 @@
 function salvar() {
-    const urlObtida = document.getElementById('entrada').value
+    const input = document.getElementById('entrada');
+    const urlObtida = input.value.trim();
 
     if (!urlObtida || !/^https?:\/\/.+\..+/i.test(urlObtida)) {
-        alert("Por favor, insira uma URL válida.")
-        return
+        alert("Por favor, insira uma URL válida.");
+        return;
     }
 
-    const data = { url: urlObtida }
-    const dominioAtual = window.location.origin
-    const api = `${dominioAtual}/gerar`
+    const dominioAtual = window.location.origin;
+    const api = dominioAtual + '/gerar';
 
     fetch(api, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ url: urlObtida })
     })
-        .then(response => response.json())
-        .then(data => {
-            const urlEncurtada = `${dominioAtual}/${data.urlEncurtada}`
-            document.getElementById('urlEncurtada').innerText = urlEncurtada
-            const qrcodeElement = document.getElementById('qrcode')
-            QRCode.toCanvas(qrcodeElement, urlEncurtada, function (error) {
-                if (error) {
-                    console.error(error)
-                }
-            })
-            const modal = new bootstrap.Modal(document.getElementById('modal'))
-            modal.show()
+        .then(function (response) {
+            if (!response.ok) {
+                // controller retorna 400 sem body
+                throw new Error("Erro ao Gerar a URL");
+            }
+            return response.json();
         })
-        .catch(error => {
-            alert(error)
-            console.log(error)
+        .then(function (data) {
+            const urlEncurtada = dominioAtual + '/' + data.urlEncurtada;
+
+            const output = document.getElementById('urlEncurtada');
+            output.innerText = urlEncurtada;
+
+            const canvas = document.getElementById('qrcode');
+            QRCode.toCanvas(canvas, urlEncurtada);
+
+            new bootstrap.Modal(document.getElementById('modal')).show();
         })
+        .catch(function (error) {
+            console.error(error);
+            alert(error.message);
+        });
 }
 
 function copiar() {
-    const urlEncurtada = document.getElementById('ondevaiaurl').innerText
-    navigator.clipboard.writeText(urlEncurtada)
-        .then(() => {
-            alert('URL copiada para a área de transferência!')
+    const output = document.getElementById('urlEncurtada');
+    const texto = output.innerText.trim();
+
+    if (!texto) {
+        alert('Nenhuma URL para copiar');
+        return;
+    }
+
+    navigator.clipboard.writeText(texto)
+        .then(function () {
+            alert('URL copiada!');
         })
-        .catch(err => {
-            alert('Erro ao copiar a URL')
-            console.log(err)
+        .catch(function (err) {
+            console.error(err);
+            alert('Erro ao copiar a URL');
         });
 }

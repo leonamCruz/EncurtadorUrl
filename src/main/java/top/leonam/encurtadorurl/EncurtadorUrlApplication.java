@@ -1,4 +1,4 @@
-package tech.leonam.encurtadorurl;
+package top.leonam.encurtadorurl;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

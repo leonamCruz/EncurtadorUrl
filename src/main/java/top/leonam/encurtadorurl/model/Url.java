@@ -1,26 +1,25 @@
-package tech.leonam.encurtadorurl.model;
+package top.leonam.encurtadorurl.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.time.Instant;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
+@Builder
 public class Url {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false, unique = true)
     private String urlOriginal;
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String urlEncurtada;
-    private String dataDeCriacao;
+    private Instant dataDeCriacao;
     private Long quantasVezesEntraram;
 
     @PrePersist

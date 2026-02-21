@@ -1,4 +1,4 @@
-package tech.leonam.encurtadorurl.model;
+package top.leonam.encurtadorurl.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

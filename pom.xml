@@ -8,9 +8,9 @@
         <version>3.3.3</version>
         <relativePath/>
     </parent>
-    <groupId>tech.leonam</groupId>
-    <artifactId>EncurtadorUrl</artifactId>
-    <version>2</version>
+    <groupId>top.leonam</groupId>
+    <artifactId>app</artifactId>
+    <version>3</version>
     <name>EncurtadorUrl</name>
     <description>EncurtadorUrl</description>
     <url/>
@@ -61,6 +61,11 @@
             <groupId>commons-validator</groupId>
             <artifactId>commons-validator</artifactId>
             <version>1.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 

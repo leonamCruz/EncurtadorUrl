@@ -13,9 +13,13 @@ Não é armazenado log's e nem ip's. Apenas conta quantas vezes o site foi acess
 <li>Opcional: Ter o Docker instalado</li>
 <li>Opcional: Ter o Java JDK 21 instalado</li>
 <li>Obrigatório: Banco de Dados MariaDB</li>
-<li>Se rodar através do Docker, precisa de no minimo 300 MB livre de RAM</li>
+<li>Se rodar através do Docker, precisa de no mínimo 300 MB livre de RAM</li>
 <li>Opcional: Ter fé.</li>
 </ul>
+
+### Versão 3:
+A versão três agora utiliza base 62 para melhorar o desempenho. Houve atualizações também no docker para diminuir o tamanho da imagem e aumentar a velocidade de subir o container.
+LocalDateTime foi substituido por Instant para evitar conflitos de localidade de hospedagem.
 
 ### Explicações:
 Caso queria rodar com o Docker, não é necessário ter o Maven, nem o Java JDK 21, caso não opte pelo Docker, ai sim serão necessários as duas opções que ainda pouco falamos.<br>
@@ -52,7 +56,7 @@ DB_PASS=<sua senha do MariaDB>
 
 <li>Finalmente copie esse comando para rodar:</li>
 
-`docker run -d -p 666:666 --env-file arq.env encurtador:latest`
+`docker run -d -p 8080:8080 --env-file arq.env encurtador:latest`
 <br>
 Você pode alterar a porta do Host para qual desejar.
 
