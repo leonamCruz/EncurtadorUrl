@@ -13,12 +13,12 @@ Não é armazenado log's e nem ip's. Apenas conta quantas vezes o site foi acess
 <li>Opcional: Ter o Docker instalado</li>
 <li>Opcional: Ter o Java JDK 21 instalado</li>
 <li>Obrigatório: Banco de Dados MariaDB</li>
-<li>Se rodar através do Docker, precisa de no mínimo 300 MB livre de RAM</li>
+<li>Se rodar através do Docker, precisa de no mínimo 200 MB livre de RAM</li>
 <li>Opcional: Ter fé.</li>
 </ul>
 
 ### Versão 3:
-A versão três agora utiliza base 62 para melhorar o desempenho. Houve atualizações também no docker para diminuir o tamanho da imagem e aumentar a velocidade de subir o container.
+A versão três agora utiliza base 62 para melhorar o desempenho, pois na versão anterior existia o problema de N+1. Houveram atualizações também no dockerfile para diminuir o tamanho da imagem e aumentar a velocidade de subir o container.
 LocalDateTime foi substituido por Instant para evitar conflitos de localidade de hospedagem.
 
 ### Explicações:
@@ -38,9 +38,12 @@ A máquina onde eu hospedo o Conteiner Docker é um i3320 com 12gb de ram. Entã
 
 ` docker build -t encurtador:latest . 
 ` <br>
-Na máquina de testes onde compilei o projeto, levou por volta de 2 minutos para compilar, tenha paciência.
+ou
+<br>
+`docker compose up --build -d`<br>
+Na máquina de testes onde compilei o projeto, levou por volta de 1 minuto para compilar, tenha paciência.
 
-<li>Crie um arquivo .env e insira as seguintes informações</li>
+<li>Crie um arquivo .env onde você clonou o repositório e insira as seguintes informações</li>
 
 ` touch arq.env 
 `<br>
@@ -58,6 +61,8 @@ DB_PASS=<sua senha do MariaDB>
 
 `docker run -d -p 8080:8080 --env-file arq.env encurtador:latest`
 <br>
+Caso você tenha utiliza o docker compose, não precisa da etapa anterior.
+
 Você pode alterar a porta do Host para qual desejar.
 
 ## Forma Chata de rodar o Projeto
